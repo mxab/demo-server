@@ -1,6 +1,12 @@
+import io.quarkus.gradle.extension.QuarkusPluginExtension
+import io.quarkus.gradle.tasks.QuarkusBuild
+import org.jreleaser.gradle.plugin.JReleaserExtension
+
 plugins {
     java
     id("io.quarkus")
+    id("org.jreleaser") version "1.0.0-M3"
+
 }
 
 repositories {
@@ -32,3 +38,49 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     options.compilerArgs.add("-parameters")
 }
+
+configure<JReleaserExtension> {
+    project {
+        website.set( "https://acme.com/app")
+        authors.add( "Duke")
+        license.set("Apache-2.0")
+        extraProperties.put("inceptionYear", "2021")
+    }
+    release {
+        github {
+            owner.set("mxab")
+            overwrite.set(true)
+        }
+    }
+    distributions {
+        create("app") {
+            artifact {
+                path.set( file("$buildDir/${project.name}-${project.version}-runner.jar"))
+            }
+        }
+    }
+}
+/*
+jreleaser {
+    project {
+        website = 'https://acme.com/app'
+        authors = ['Duke']
+        license = 'Apache-2.0'
+        extraProperties.put('inceptionYear', '2021')
+    }
+
+    release {
+        github {
+            owner = 'mxab'
+            overwrite = true
+        }
+    }
+    distributions {
+        app {
+           artifact {
+               path = 'build/distributions/{{distributionName}}-{{projectVersion}}.zip'
+           }
+        }
+    }
+}
+*/
