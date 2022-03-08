@@ -27,7 +27,7 @@ dependencies {
 }
 
 group = "com.github.mxab.demo"
-version = "1.0.0-SNAPSHOT"
+version = "0.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -55,7 +55,7 @@ configure<JReleaserExtension> {
     distributions {
         create("app") {
             artifact {
-                path.set( file("$buildDir/${project.name}-${project.version}-runner.jar"))
+                path.set( file("$buildDir/${project.name.get()}-${project.version.get()}-runner.jar"))
             }
         }
     }
