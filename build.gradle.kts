@@ -62,3 +62,7 @@ configure<JReleaserExtension> {
         }
     }
 }
+
+tasks.named("release"){
+    finalizedBy( "jreleaserFullRelease")
+}
