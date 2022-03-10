@@ -10,19 +10,19 @@ import javax.ws.rs.core.MediaType;
 
 import static java.util.Objects.requireNonNull;
 
-@Path("/some-page")
-public class SomePage {
+@Path("/")
+public class IndexPage {
 
-    private final Template page;
+    private final Template index;
 
-    public SomePage(Template page) {
-        this.page = requireNonNull(page, "page is required");
+    public IndexPage(Template index) {
+        this.index = requireNonNull(index, "page is required");
     }
 
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get(@QueryParam("name") String name) {
-        return page.data("name", name);
+        return index.data("name", name);
     }
 
 }

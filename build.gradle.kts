@@ -24,6 +24,7 @@ dependencies {
     implementation("io.quarkus:quarkus-qute")
     implementation("io.quarkus:quarkus-resteasy-qute")
     implementation("io.quarkus:quarkus-arc")
+    implementation("org.webjars.npm:bulma:0.9.3")
     testImplementation("io.quarkus:quarkus-junit5")
 }
 
