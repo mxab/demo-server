@@ -6,6 +6,7 @@ plugins {
     java
     id("io.quarkus")
     id("org.jreleaser") version "1.0.0-M3"
+    id("nebula.release") version "16.0.0"
 
 }
 
@@ -27,7 +28,6 @@ dependencies {
 }
 
 group = "com.github.mxab.demo"
-version = "0.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -49,6 +49,7 @@ configure<JReleaserExtension> {
     release {
         github {
             owner.set("mxab")
+
             overwrite.set(true)
         }
     }
@@ -57,30 +58,7 @@ configure<JReleaserExtension> {
             artifact {
                 path.set( file("$buildDir/${project.name.get()}-${project.version.get()}-runner.jar"))
             }
-        }
-    }
-}
-/*
-jreleaser {
-    project {
-        website = 'https://acme.com/app'
-        authors = ['Duke']
-        license = 'Apache-2.0'
-        extraProperties.put('inceptionYear', '2021')
-    }
 
-    release {
-        github {
-            owner = 'mxab'
-            overwrite = true
-        }
-    }
-    distributions {
-        app {
-           artifact {
-               path = 'build/distributions/{{distributionName}}-{{projectVersion}}.zip'
-           }
         }
     }
 }
-*/
