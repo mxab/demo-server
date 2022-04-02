@@ -21,8 +21,8 @@ public class IndexPage {
 
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance get(@QueryParam("name") String name) {
-        return index.data("name", name);
+    public TemplateInstance get(@QueryParam("greetee") String name) {
+        return index.data("greetee", name);
     }
 
 }
