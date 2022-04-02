@@ -1,5 +1,6 @@
 import io.quarkus.gradle.extension.QuarkusPluginExtension
 import io.quarkus.gradle.tasks.QuarkusBuild
+import nebula.plugin.release.ReleaseExtension
 import org.jreleaser.gradle.plugin.JReleaserExtension
 
 plugins {
@@ -36,6 +37,9 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+ext {
+    set("release.sanitizeVersion", true)
+}
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     options.compilerArgs.add("-parameters")
