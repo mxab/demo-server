@@ -5,7 +5,7 @@ import org.jreleaser.gradle.plugin.JReleaserExtension
 plugins {
     java
     id("io.quarkus")
-    id("org.jreleaser") version "1.0.0-M3"
+    id("org.jreleaser") version "1.0.0-RC1"
     id("nebula.release") version "16.0.0"
 
 }
@@ -26,8 +26,9 @@ dependencies {
     implementation("io.quarkus:quarkus-arc")
     implementation("org.webjars.npm:bulma:0.9.3")
     testImplementation("io.quarkus:quarkus-junit5")
-}
 
+    implementation("io.quarkus:quarkus-container-image-docker")
+}
 group = "com.github.mxab.demo"
 
 java {
@@ -59,11 +60,14 @@ configure<JReleaserExtension> {
             artifact {
                 path.set( file("$buildDir/${project.name.get()}-${project.version.get()}-runner.jar"))
             }
-
         }
     }
 }
 
 tasks.named("release"){
     finalizedBy( "jreleaserFullRelease")
+}
+
+tasks.named<Wrapper>("wrapper"){
+    gradleVersion = "7.4.1"
 }
