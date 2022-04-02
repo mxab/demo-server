@@ -28,7 +28,7 @@ dependencies {
     implementation("org.webjars.npm:bulma:0.9.3")
     testImplementation("io.quarkus:quarkus-junit5")
 
-    implementation("io.quarkus:quarkus-container-image-docker")
+    //implementation("io.quarkus:quarkus-container-image-docker")
 }
 group = "com.github.mxab.demo"
 
@@ -67,6 +67,7 @@ configure<JReleaserExtension> {
         }
     }
 }
+
 
 tasks.named("release"){
     finalizedBy( "jreleaserFullRelease")
